@@ -32,7 +32,7 @@ app.get('/albums', function(req, res){
         }
     })
 })
-
+app.set('port', (process.env.PORT || 5000));
 app.post('/songs', function(req, res){
     function findSong(song){
         return song[0].album_id == req.body.id;
@@ -46,7 +46,10 @@ app.post('/songs', function(req, res){
     // })
 })
 
-app.listen(3010, function(){
-    console.log('Server started on Port 3010...')
-})
+// app.listen(3010, function(){
+//     console.log('Server started on Port 3010...')
+// })
+app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+  });
 
