@@ -1,128 +1,297 @@
-// .test{
-//     color: green;
-// }
-// .carousel-item {
-// img{
-//     margin: 0 auto;
-// }
-// }
 
 html, body {
     height: 100%;
     margin: 0;
-  }
+    font-family: 'Roboto', 'Roboto Condensed' sans-serif;  }
   
-  body {
-    background: -webkit-linear-gradient(top, #4D4D4D 0, #4D4D4D 180px, #939393 400px);                
-  }
   
-
-  
-  #scroller {
-    width: 500px;
-    height: 200px;
-    margin: 0 auto;
-    padding: 50px 0;
-    -webkit-perspective: 500px;
-    -moz-perspective: 500px;
-    -o-perspective: 500px;
-  }
-  
-  #scroller .item {
+  #carousel { 
+        width: 100%;
+        height: 500px;
+        margin: 0 auto;
+        padding-top: 100px;
+        &:hover{
+            .scroll{
+                -webkit-transition: all .3s;
+                transition: all .3s;
+                opacity: 1;            
+            }
+        }
+        .scroll {
+            position: absolute;
+            width: 100%;
+            height: 64px;
+            z-index: 2;
+            margin: 67px 0;
+            opacity: 0;
+            -webkit-transition: all .3s;
+            transition: all .3s;
+            .left, .right {
+                position: absolute;
+                display: block;
+                height: 64px;
+                width: 64px;
+                border-radius:8px;
+                color: #dddddd;
+                font-size: 30px;
+                padding: 14px;
+                text-align: center;
+                cursor: pointer;
+                border: solid 2px #dddddd;
+                -webkit-transition: all .2s;
+                transition: all .2s;
+            
+                &:hover{
+                    background-color: #0085b2;
+                    color: white;
+                    border: none;
+                    -webkit-transition: all .2s;
+                    transition: all .2s;
+                
+                }
+                &:active{
+                    background-color: #00698c;
+                    color: white;
+                    border: none;
+                
+                }
+              }
+              .left{
+                  left: 5vw;
+              };
+              .right {
+            
+                right: 5vw;
+              }
+        }
+        
+    .album {
     display: block;
     position: absolute;
-    left: 142px;
-    border-radius: 10px;
-    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.85, transparent), to(rgba(255,255,255,0.15)));
+    left: ~'calc(50% - 148px)';
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    // cursor: pointer;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
     z-index: 0;
-  }
-  
-  /* Since inset shadows don't play nice with images, we'll create a pseudo element and apply our image styling to that instead */
-  #scroller .item:before {
-    border-radius: 10px;
-    width: 500px;
-    display: block;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3), 0 0 0 1px rgba(0,0,0,0.4);
-  }
-  
-  #scroller .item img {
-    display: block;
-  }
-  
-  #scroller .two {
-    -webkit-transform: rotateY(25deg) translateX(-320px) skewY(-5deg) scale(0.4, 0.6);
-    -moz-transform: rotateY(25deg) translateX(-320px) skewY(-5deg) scale(0.4, 0.6);
-    -o-transform: rotateY(25deg) translateX(-320px) skewY(-5deg) scale(0.4, 0.6);
-  }
-  
-  #scroller .three {
-    z-index:1;
-    -webkit-transform: rotateY(0deg) translateX(0) scale(1);
-    -moz-transform: rotateY(0deg) translateX(0) scale(1);
-    -o-transform: rotateY(0deg) translateX(0) scale(1);
-  }
-  
-  #scroller .four {
-    -webkit-transform: rotateY(-25deg) translateX(320px) skewY(5deg) scale(0.4, 0.6);
-    -moz-transform: rotateY(-25deg) translateX(320px) skewY(5deg) scale(0.4, 0.6);
-    -o-transform: rotateY(-25deg) translateX(320px) skewY(5deg) scale(0.4, 0.6);
-  }
-  
-  #scroller .one {
-    z-index: -1;
-    -webkit-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
-    -moz-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
-    -o-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
-  }
-  
-  #scroller .five {
-    z-index: -1;
-    -webkit-transform: rotateY(-25deg) translateX(430px) skewY(5deg) scale(0.3, 0.5);
-    -moz-transform: rotateY(-25deg) translateX(430px) skewY(5deg) scale(0.3, 0.5);
-    -o-transform: rotateY(-25deg) translateX(430px) skewY(5deg) scale(0.3, 0.5);
-  }
-  
-  .nav {
-    position: absolute;
-    left: 142px;
-    width: 216px;
-    height: 30px;
-    margin: 170px 0 0;
-    z-index: 2;
-    // display: none;
-  }
-  
-  .prev, .next {
-    position: absolute;
-    display: block;
-    height: 30px;
-    width: 30px;
-    background-color: rgba(0,0,0,0.85);
-    border-radius:15px;
-    color: #E4E4E4;
-    bottom: 15px;
-    
-    text-align: center;
-    line-height: 26px;
-    cursor: pointer;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5), 0 0 0 1px rgba(0,0,0,0.7);
-  }
-  .prev{
-      left: 15px
-  };
-  .next {
+    // &:before {
+    //     display: block;
+    //     content: '';
+    //     position: absolute;
+    //     width: 100%;
+    //     height: 100%;
+    //     box-shadow: 0 0 5 2px rgba(0,0,0,0.4);
+    //   }
+      img{
+          display: block;
+          margin: 10px 20px;
+      }
+      .album-info{
+          font-size: 24px;
+          text-align: center;
+          font-family: roboto;
+          padding: 5px;
+          max-width: 280px;
+      }
+      .name{
+          color: #00698c;
+          min-height: 64px;
+          position: relative;
+          letter-spacing: 3px;
+          div{
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              margin: auto;
+              
+              
+          }
+      }
+      .artist{
+        color: #000000;
+        font-size: 20px;
+        padding-bottom: 20px
+      }
+      .long-name{
+          letter-spacing: 1px ;
+      }
+    }
 
-    right: 15px;
+      .one {
+        z-index: -1;
+        -webkit-transform: translateY(-80px) translateX(-310px);
+        -moz-transform: translateY(-80px) translateX(-310px);
+        -o-transform: translateY(-80px) translateX(-310px);
+        // -moz-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
+        // -o-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
+      }
+      .two {
+        -webkit-transform: translateY(-40px) translateX(-160px);
+        -moz-transform: translateY(-40px) translateX(-160px);
+        -o-transform: translateY(-40px) translateX(-160px);
+    }
+      
+      .three {
+        z-index:1;
+        -webkit-transform: rotateY(0) translateX(0);
+        -moz-transform: rotateY(0) translateX(0);
+        -o-transform: rotateY(0) translateX(0);
+        background-color: #0085b2;
+        .name, .artist{
+            color: white;
+        }
+    }
+      
+      .four {
+        -webkit-transform: translateY(-40px) translateX(160px);
+        -moz-transform: translateY(-40px) translateX(160px);
+        -o-transform: translateY(-40px) translateX(160px);
+      }
+      
+     .five {
+        z-index: -1;
+        -webkit-transform: translateY(-80px) translateX(310px);
+        -moz-transform: translateY(-80px) translateX(310px);
+        -o-transform: translateY(-80px) translateX(310px);
+      }
+    
   }
   
-  .prev:hover, .next:hover {
-    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5), 0 0 0 1px rgba(0,0,0,0.7);                
+  #songs.rollup{
+    height: 0 !important;
+    -webkit-transition: all 3s;        
+    transition: all 3s;    
+
+    td{
+        display: none;
+        height: 0 !important;        
+    }
   }
+  #songs{
+      max-height: 600px;
+      width: 650px;
+      margin: 0 auto;
+      border-radius: 10px;
+      box-shadow: 0 0 5px 5px #dddddd;   
+      -webkit-transition: all 3s;
+      transition: all 3s;
+      .song{
+          background-color: #f4f4f4;
+          border-bottom: solid 1px #dddddd;
+          td{
+              padding: 12px 0 12px 15px;
+          }
+          .song-order{
+              width: 32px;
+              div{
+                background-color: #90b9c9;
+                color: #f4f4f4;
+                width: 24px;
+                height: 24px;
+                text-align: center;
+                line-height: 24px;
+              }
+
+          }
+          .glyphicon.fav{
+              color: #d9d900 !important;
+          }
+          .glyphicon{
+              color: #dddddd;
+              position: relative;
+              font-size: 24px;
+              width: 32px;
+              cursor: pointer;
+              .bubble{
+                  position: absolute;
+                  top: -28px;
+                  right: -50px;
+                  padding: 10px;
+                  white-space: nowrap;
+                  border-radius: 5px;
+                background-color: #888888;
+                color: #f4f4f4;
+                display: none;
+                &:before{
+                    font-family: 'Roboto';
+                    font-size: 10px;
+                    content: "MARK AS FAVORITE";
+                }
+            }            
+              .pointer{
+                position: absolute;
+                top: 0;
+                left: 16px;
+                width: 0; 
+                height: 0; 
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                border-top: 10px solid #888888;
+                display: none;
+              }
+              &:hover{
+                  .bubble{
+                      display: block;
+                  }
+                  .pointer{
+                      display: block;
+                  }
+              }
+          }
+          .song-name{
+            color: #0085b2; 
+            letter-spacing: 2px; 
+            .name-span{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: inline-block;
+                max-width: 280px;
+                vertical-align: bottom;
+                line-height: 15px;
+            }
+            .tag{
+                padding: 3px 15px;
+                margin: 0 5px;
+                background-color: #dddddd;
+                color: #444444;
+                font-size: 12px;
+                letter-spacing: 1px; 
+            }
+          }
+          .song-duration{
+            color: #444444;    
+            margin-right: 15px;        
+          }
+          &:hover{
+              background-color: #0085b2;
+              color: #f4f4f4;
+              -webkit-transition: all .3s;
+              transition: all .3s;  
+              .song-name{
+                  color: #f4f4f4;
+              }
+              .tag{
+                  background-color: #90b9c9;
+                  color: #f4f4f4;
+              }
+              .glyphicon{
+                  color: #f4f4f4;
+              }
+              .song-duration{
+                color: #f4f4f4;
+              }
+          }
+      }
+  }
+  /* Since inset shadows don't play nice with images, we'll create a pseudo element and apply our image styling to that instead */
+
+  
+  
   
