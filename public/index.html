@@ -11,7 +11,7 @@
         <title>HakuSport JukeBox</title>
     </head>
      <body ng-app="jukebox" ng-controller="carousel">
-        <div id="carousel">
+        <div id="carousel" ng-mouseenter="stopScroll()">
             <div class="scroll">
                 <a class="left"><span class="glyphicon glyphicon-arrow-left"></span></a>
                 <a class="right"><span class="glyphicon glyphicon-arrow-right"></span></a>
@@ -29,7 +29,7 @@
                 <td class="song-name"><span class="name-span">{{song.song_name | uppercase}}</span>
                     <span class="tag" ng-if="song.song_label" ng-repeat="tag in song.song_label">{{tag | uppercase}}</span> 
                 </td>
-                <td class="song-duration">{{song.song_duration}}</td>
+                <td class="song-duration" ng-click="db()">{{song.song_duration}}</td>
             </tr>
         </table>
               <script

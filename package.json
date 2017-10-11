@@ -10,6 +10,7 @@
   "dependencies": {
     "body-parser": "*",
     "express": "*",
+    "mongojs": "^2.4.1",
     "request": "^2.83.0"
   },
   "author": "",

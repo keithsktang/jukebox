@@ -2,7 +2,16 @@ var app = angular.module('jukebox',[] );
 app.controller('carousel', function($scope,$http, $timeout, $interval){
     $scope.hi = "Hello World!";
     $scope.albums = [];
-
+    var stop;
+$scope.autoScroll = function(){
+    if(angular.isDefined(stop)) return;
+    stop = $interval( scroll, 4000, $scope.albums.length, '','right')};
+$scope.stopScroll = function(){
+    if (angular.isDefined(stop)) {
+    $interval.cancel(stop);
+    stop = undefined;
+    }
+};
     $http.get('/albums').then(function(response){
         $scope.albums = [{"id":1,"name":"If Your'e Reading This It's Too Late","artist_name":"DRAKE","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-1.png"},{"id":2,"name":"Hotter Than July","artist_name":"Stevie Wonder","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-2.png"},{"id":3,"name":"Overexposed","artist_name":"Maroon 5","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-3.png"},{"id":4,"name":"Hit n Run Phase One","artist_name":"PRINCE","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-4.png"},{"id":5,"name":"Brothers","artist_name":"The Black Keys","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-5.png"}]        
         // $scope.albums = response.data;
@@ -12,7 +21,7 @@ app.controller('carousel', function($scope,$http, $timeout, $interval){
             scroll('left');        
             $scope.getSongs($('.three'))            
         }, 0);
-        // $interval( scroll, 10000, '', '','next');
+        $scope.autoScroll();
     });
 
     
@@ -21,10 +30,8 @@ app.controller('carousel', function($scope,$http, $timeout, $interval){
         $http.post('/songs', {id: id[0].id}).then(function(response){
             $scope.songs = response.data;
             $timeout(function(){angular.element('#songs').removeClass('rollup')},500)                    
-            // $scope.songs = response.data;
         });
     }   
-    // window.setInterval("scroll('next')", 4000);
 
     var albumPositions = [];
     function assignPositions() {
@@ -59,11 +66,11 @@ app.controller('carousel', function($scope,$http, $timeout, $interval){
         });        
     }
     /* Hover behaviours */
-    // $('#scroller').hover(function() {
-    //     $('.nav').stop(true, true).fadeIn(200);
-    // }, function() {
-    //     $('.nav').stop(true, true).fadeOut(200);
-    // });
+    $('#carousel').hover(function() {
+        $('.scroll').stop(true, true).fadeIn(200);
+    }, function() {
+        $('.scroll').stop(true, true).fadeOut(200);
+    });
 
     /* Click behaviours */
     $('.left').click(function() {
@@ -77,6 +84,10 @@ app.controller('carousel', function($scope,$http, $timeout, $interval){
         let star = ev.target.id
         $('#'+star).hasClass('fav') ? $('#'+star).removeClass('fav') : $('#'+star).addClass('fav');
     }
-   
+   $scope.db = function(){
+       $http.get('/fav', function(req, res){
+        console.log(res);
+       })
+   }
 })
 
