@@ -27,7 +27,7 @@ $scope.albums = [];
             scroll('left');        
             $scope.getSongs($('.three'))  // to match spec, first load album Id 3.
         }, 0);
-        // $scope.autoScroll();
+        $scope.autoScroll();
             //Get fav list on load 
     $http.get('/fav').then(function(response){
         $scope.favList = response.data;
