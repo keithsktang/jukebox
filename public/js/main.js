@@ -28,12 +28,13 @@ $scope.albums = [];
             $scope.getSongs($('.three'))  // to match spec, first load album Id 3.
         }, 0);
         // $scope.autoScroll();
-    });
-
-    //Get fav list on load 
+            //Get fav list on load 
     $http.get('/fav').then(function(response){
         $scope.favList = response.data;
     })
+
+    });
+
 
     //load song and matching favorite songs with mongo favList to show yellow star
     $scope.getSongs = function(id){
