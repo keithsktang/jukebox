@@ -11,6 +11,7 @@ Make a scrolling carousel for music selections
 - Stops scrolling on hover.
 - Ellipsis on long song names.
 - Animated shuffles and animated song list collapse and expand.
-- Persisted favorite songs.
+- Persisted favorite songs to MongoDB
 
-[View it in action] (https://jukebox-carousel.herokuapp.com/)
+[View it in action](https://jukebox-carousel.herokuapp.com/)
+<https://jukebox-carousel.herokuapp.com/>

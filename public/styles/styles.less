@@ -10,6 +10,8 @@ html, body {
         height: 500px;
         margin: 0 auto;
         padding-top: 100px;
+
+    //show scrolling buttons only on hover
         &:hover{
             .scroll{
                 -webkit-transition: all .3s;
@@ -17,6 +19,8 @@ html, body {
                 opacity: 1;            
             }
         }
+
+        // scroll buttons are loading on top of the carousel z-index 2
         .scroll {
             position: absolute;
             width: 100%;
@@ -60,12 +64,11 @@ html, body {
                   left: 5vw;
               };
               .right {
-            
                 right: 5vw;
               }
         }
         
-    .album {
+    .album { //wrapper element for the album
     display: block;
     position: absolute;
     left: ~'calc(50% - 148px)';
@@ -73,19 +76,11 @@ html, body {
     background-color: white;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
     text-decoration: none;
-    // cursor: pointer;
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
     z-index: 0;
-    // &:before {
-    //     display: block;
-    //     content: '';
-    //     position: absolute;
-    //     width: 100%;
-    //     height: 100%;
-    //     box-shadow: 0 0 5 2px rgba(0,0,0,0.4);
-    //   }
+
       img{
           display: block;
           margin: 10px 20px;
@@ -122,7 +117,7 @@ html, body {
           letter-spacing: 1px ;
       }
     }
-
+//set individual alum cover photo poistion and transform behavior
       .one {
         z-index: -1;
         -webkit-transform: translateY(-80px) translateX(-310px);
@@ -137,7 +132,7 @@ html, body {
         -o-transform: translateY(-40px) translateX(-160px);
     }
       
-      .three {
+      .three { //all eyes on .three
         z-index:1;
         -webkit-transform: rotateY(0) translateX(0);
         -moz-transform: rotateY(0) translateX(0);
@@ -163,22 +158,13 @@ html, body {
     
   }
   
-  #songs.rollup{
-    //   min-height: 0px;
-    //   max-height: 0px;
-    // height: 0 !important;
+  #songs.rollup{ // add simple animation for albums song transition
     -webkit-transition: all .3s;        
     transition: all .3s;    
     transform:scaleY(0); 
-    td{
-        // display: none;
-        // height: 0 !important;        
-    }
   }
   #songs{
     transform:scaleY(1); 
-    //   min-height: 200px;
-    //   max-height: 200px;
       width: 650px;
       margin: 0 auto;
       border-radius: 10px;
@@ -203,7 +189,7 @@ html, body {
               }
 
           }
-          .glyphicon.fav{
+          .glyphicon.fav{ //change icon color for favorite
               color: #d9d900 !important;
           }
           .glyphicon{
@@ -212,7 +198,7 @@ html, body {
               font-size: 24px;
               width: 32px;
               cursor: pointer;
-              .bubble{
+              .bubble{ // tooltip bubble set on top of the star and only display hover
                   position: absolute;
                   top: -28px;
                   right: -50px;
@@ -222,13 +208,13 @@ html, body {
                 background-color: #888888;
                 color: #f4f4f4;
                 display: none;
-                &:before{
+                &:before{ //tooltip content
                     font-family: 'Roboto';
                     font-size: 10px;
                     content: "MARK AS FAVORITE";
                 }
             }            
-              .pointer{
+              .pointer{ //tooltip half triangle
                 position: absolute;
                 top: 0;
                 left: 16px;
@@ -294,7 +280,6 @@ html, body {
           }
       }
   }
-  /* Since inset shadows don't play nice with images, we'll create a pseudo element and apply our image styling to that instead */
 
   
   

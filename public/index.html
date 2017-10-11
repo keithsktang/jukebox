@@ -4,32 +4,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet/less" type="text/css" href="/styles/styles.less" />  
+        <!-- importanted bootstrap solely becuase of the button arrow icon to match spec. it doesn't look the same in fontawesome-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed" rel="stylesheet">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>          <!-- compiled to CSS for code submission for compatibility -->
+        <!-- usign dotless for css sanity -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>         
     
         <title>HakuSport JukeBox</title>
     </head>
+    <!-- initialize anular app -->
      <body ng-app="jukebox" ng-controller="carousel">
+         <!-- jukebox carousel section -->
         <div id="carousel" ng-mouseenter="stopScroll()">
             <div class="scroll">
                 <a class="left"><span class="glyphicon glyphicon-arrow-left"></span></a>
                 <a class="right"><span class="glyphicon glyphicon-arrow-right"></span></a>
             </div>
+            <!-- ng-repeat for all albums in api -->
             <a id="{{album.id}}" ng-repeat="album in albums" class="album">
                 <img ng-src="{{album.cover_photo_url}}" />
                 <div class="album-info name" ng-class="{'long-name': album.name.length > 20}"><div>{{album.name | uppercase}}</div></div>
                 <div class="album-info artist">{{album.artist_name | uppercase}}</div>                    
             </a>
         </div>
+        <!-- Songs list section -->
         <table id="songs">
+            <!-- ng-repeat for all songs, refreshed per each scroll -->
             <tr class="song" ng-repeat="song in songs" >
                 <td class="song-order" ><div> {{song.song_order}} </div></td>
-                <td id="star{{song.song_order}}" class="glyphicon glyphicon-star" ng-click="fav(song, $event)"><span class="bubble"></span><span class="pointer"></span> </td>
+                <!-- fav star and tooltip bubble element -->
+                <td id="star{{song.id}}" class="glyphicon glyphicon-star" ng-click="fav(song, $event)"><span class="bubble"></span><span class="pointer"></span> </td>
                 <td class="song-name"><span class="name-span">{{song.song_name | uppercase}}</span>
                     <span class="tag" ng-if="song.song_label" ng-repeat="tag in song.song_label">{{tag | uppercase}}</span> 
                 </td>
-                <td class="song-duration" ng-click="db()">{{song.song_duration}}</td>
+                <td class="song-duration">{{song.song_duration}}</td>
             </tr>
         </table>
               <script
