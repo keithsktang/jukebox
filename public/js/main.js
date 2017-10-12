@@ -1,7 +1,6 @@
 var app = angular.module('jukebox',[] );
 app.controller('carousel', function($scope,$http, $timeout, $interval){
-$scope.albums = [];
-
+    $scope.albums = [];
     // Auto scroll functions and stop scrolling as windows.interval promise
     var stop;
     $scope.autoScroll = function(){
@@ -16,10 +15,14 @@ $scope.albums = [];
         stop = undefined; //promise must be cleared for every instance
         }
     };
+    //Get fav list on load 
+    $http.get('/fav').then(function(response){
+        $scope.favList = response.data;
+        // console.log(response.data);
+    })
 
     //Get albums on load
     $http.get('/albums').then(function(response){
-        // $scope.albums = [{"id":1,"name":"If Your'e Reading This It's Too Late","artist_name":"DRAKE","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-1.png"},{"id":2,"name":"Hotter Than July","artist_name":"Stevie Wonder","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-2.png"},{"id":3,"name":"Overexposed","artist_name":"Maroon 5","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-3.png"},{"id":4,"name":"Hit n Run Phase One","artist_name":"PRINCE","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-4.png"},{"id":5,"name":"Brothers","artist_name":"The Black Keys","cover_photo_url":"https://s3.amazonaws.com/hakuapps/prod/album-5.png"}]        
         $scope.albums = response.data;
         $timeout( function(){  
             assignPositions();
@@ -28,11 +31,6 @@ $scope.albums = [];
             $scope.getSongs($('.three'))  // to match spec, first load album Id 3.
         }, 0);
         $scope.autoScroll();
-            //Get fav list on load 
-    $http.get('/fav').then(function(response){
-        $scope.favList = response.data;
-    })
-
     });
 
 
@@ -41,14 +39,18 @@ $scope.albums = [];
         angular.element('#songs').addClass('rollup')              
         $http.post('/songs', {id: id[0].id}).then(function(response){
             $scope.songs = response.data;
+            var fav = $scope.favList;
+            // console.log(fav);
             $scope.songs.forEach(function(song){
-                var fav = $scope.favList;
+                if (fav){
                 for (var i = 0; i < fav.length; i++ ){
                     if(fav[i].id == song.id && fav[i].fav === 'true'){
                        $timeout(function(){
                         $('#star'+song.id).addClass('fav');
                        }, 0) 
                     }
+                }}else{
+                    $('#mongo-error').addClass('error');
                 }
             });
             $timeout(function(){angular.element('#songs').removeClass('rollup')},500)                    
@@ -146,4 +148,3 @@ function favRes($scope, song, request, starId, res) {
     }
     $('#' + starId).hasClass('fav')?$('#' + starId).removeClass('fav'): $('#' + starId).addClass('fav');
 }
-

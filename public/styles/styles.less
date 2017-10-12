@@ -164,7 +164,8 @@ html, body {
     transform:scaleY(0); 
   }
   #songs{
-    transform:scaleY(1); 
+      position: relative;
+      transform:scaleY(1); 
       width: 650px;
       margin: 0 auto;
       border-radius: 10px;
@@ -280,7 +281,43 @@ html, body {
           }
       }
   }
-
-  
+  #mongo-error{
+      display: none;
+  }
+  #mongo-error.error {
+    -webkit-animation: seconds 1.0s forwards;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 5s;
+    animation: seconds 1.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 3s;
+    position: absolute;
+    width: 500px;
+    height: 80px;
+    border: #bbbbbb 2px solid;
+    left: 30%;
+    z-index: 2;
+    color: #666666;
+    background-color: #f4f4f4;
+    font-size: 24px;
+    text-align: center;
+    display: block
+  }
+  @-webkit-keyframes seconds {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes seconds {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }  
   
   
