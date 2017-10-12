@@ -5,7 +5,7 @@ var app = express();
 var request = require('request');
 var mongojs = require('mongojs'); 
 var db = mongojs('mongodb://sa:db123@ds115035.mlab.com:15035/jukebox',['favorites']);
-
+var scrollReq = {"scroll": 0, "album": 0, "fav": 0};
 // Body Parser for json encode
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -18,6 +18,13 @@ app.get('/fav', function(req, res, next){
     db.favorites.find(function(err, fav){
         if(!err){
         res.json(fav);
+        }else{
+            res.send(err);
+        }
+    })
+    db.scroll.find(function(err, scroll){
+        if(!err){
+        scrollReq.scroll = parseInt(scroll[0].scroll);
         }else{
             res.send(err);
         }
@@ -40,8 +47,9 @@ app.post('/favList', function(req, res, next){
                 }
                 res.json(favSong);
             });
-    
         }
+        scrollReq.fav++;    
+        updateScroll();    
     })
 
 // Updating favorites methods
@@ -58,10 +66,12 @@ app.put('/favList', function(req, res, next){
                     res.send(err);
                     
                 }
-                res.json(favSong);
-                
+                res.json(favSong);                
             });
+                
         }
+        scrollReq.fav++;    
+        updateScroll();    
     })
 
 
@@ -72,7 +82,9 @@ app.get('/albums', function(req, res){
         if(!error && response.statusCode == 200){
             res.send(body);
         }
-    })
+    })  
+    scrollReq.album++;    
+    updateScroll();    
 })
 //Get Songs method
 app.post('/songs', function(req, res){
@@ -81,6 +93,8 @@ app.post('/songs', function(req, res){
             res.send(body);
         }
     })
+    scrollReq.scroll++;    
+    updateScroll();    
 })
 
 //Set port 5000 for Dev eviornment only
@@ -91,4 +105,8 @@ app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
   });
 
+
+function updateScroll() {
+    db.scroll.update({ _id: mongojs.ObjectId("59df96f5734d1d76fed86d2a") }, scrollReq);
+}
  

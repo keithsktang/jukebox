@@ -31,7 +31,7 @@
         <!-- Display error in case of MongoDB Error, Message fade away after 3s -->
         <div id="mongo-error"> There seems to be an error retriving favorites from MongoDB.  Please Reload! </div>
         <!-- Songs list section -->
-        <table id="songs">
+        <table id="songs" ng-mouseenter="stopScroll()">
             <!-- ng-repeat for all songs, refreshed per each scroll -->
             <tr class="song" ng-repeat="song in songs" >
                 <td class="song-order" ><div> {{song.song_order}} </div></td>
