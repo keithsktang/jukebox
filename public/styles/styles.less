@@ -1,74 +1,76 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', 'Roboto Condensed' sans-serif;
+}
 
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Roboto', 'Roboto Condensed' sans-serif;  }
-  
-  
-  #carousel { 
-        width: 100%;
-        height: 500px;
-        margin: 0 auto;
-        padding-top: 100px;
+#carousel {
+  width: 100%;
+  height: 500px;
+  margin: 0 auto;
+  padding-top: 100px;
+  //show scrolling buttons only on hover
+  &:hover {
+    .scroll {
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      opacity: 1;
+    }
+  }
+  // scroll buttons are loading on top of the carousel z-index 2
+  .scroll {
+    position: absolute;
+    width: 100%;
+    height: 64px;
+    z-index: 2;
+    margin: 67px 0;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
 
-    //show scrolling buttons only on hover
-        &:hover{
-            .scroll{
-                -webkit-transition: all .3s;
-                transition: all .3s;
-                opacity: 1;            
-            }
-        }
+    .left,
+    .right {
+      position: absolute;
+      display: block;
+      height: 64px;
+      width: 64px;
+      border-radius: 8px;
+      color: #dddddd;
+      font-size: 30px;
+      padding: 14px;
+      text-align: center;
+      cursor: pointer;
+      border: solid 2px #dddddd;
+      -webkit-transition: all 0.2s;
+      transition: all 0.2s;
 
-        // scroll buttons are loading on top of the carousel z-index 2
-        .scroll {
-            position: absolute;
-            width: 100%;
-            height: 64px;
-            z-index: 2;
-            margin: 67px 0;
-            opacity: 0;
-            -webkit-transition: all .3s;
-            transition: all .3s;
-            .left, .right {
-                position: absolute;
-                display: block;
-                height: 64px;
-                width: 64px;
-                border-radius:8px;
-                color: #dddddd;
-                font-size: 30px;
-                padding: 14px;
-                text-align: center;
-                cursor: pointer;
-                border: solid 2px #dddddd;
-                -webkit-transition: all .2s;
-                transition: all .2s;
-            
-                &:hover{
-                    background-color: #0085b2;
-                    color: white;
-                    border: none;
-                    -webkit-transition: all .2s;
-                    transition: all .2s;
-                
-                }
-                &:active{
-                    background-color: #00698c;
-                    color: white;
-                    border: none;
-                
-                }
-              }
-              .left{
-                  left: 5vw;
-              };
-              .right {
-                right: 5vw;
-              }
-        }
-        
-    .album { //wrapper element for the album
+      &:hover {
+        background-color: #0085b2;
+        color: white;
+        border: none;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+
+      &:active {
+        background-color: #00698c;
+        color: white;
+        border: none;
+      }
+    }
+
+    .left {
+      left: 5vw;
+    };
+
+    .right {
+      right: 5vw;
+    }
+  }
+
+  .album {
+    //wrapper element for the album
     display: block;
     position: absolute;
     left: ~'calc(50% - 148px)';
@@ -81,243 +83,277 @@ html, body {
     -o-transition: all 0.4s ease-in-out;
     z-index: 0;
 
-      img{
-          display: block;
-          margin: 10px 20px;
-      }
-      .album-info{
-          font-size: 24px;
-          text-align: center;
-          font-family: roboto;
-          padding: 5px;
-          max-width: 280px;
-      }
-      .name{
-          color: #00698c;
-          min-height: 64px;
-          position: relative;
-          letter-spacing: 3px;
-          div{
-              position: absolute;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              margin: auto;
-              
-              
-          }
-      }
-      .artist{
-        color: #000000;
-        font-size: 20px;
-        padding-bottom: 20px
-      }
-      .long-name{
-          letter-spacing: 1px ;
-      }
+    img {
+      display: block;
+      margin: 10px 20px;
     }
-//set individual alum cover photo poistion and transform behavior
-      .one {
-        z-index: -1;
-        -webkit-transform: translateY(-80px) translateX(-310px);
-        -moz-transform: translateY(-80px) translateX(-310px);
-        -o-transform: translateY(-80px) translateX(-310px);
-        // -moz-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
-        // -o-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
-      }
-      .two {
-        -webkit-transform: translateY(-40px) translateX(-160px);
-        -moz-transform: translateY(-40px) translateX(-160px);
-        -o-transform: translateY(-40px) translateX(-160px);
-    }
-      
-      .three { //all eyes on .three
-        z-index:1;
-        -webkit-transform: rotateY(0) translateX(0);
-        -moz-transform: rotateY(0) translateX(0);
-        -o-transform: rotateY(0) translateX(0);
-        background-color: #0085b2;
-        .name, .artist{
-            color: white;
-        }
-    }
-      
-      .four {
-        -webkit-transform: translateY(-40px) translateX(160px);
-        -moz-transform: translateY(-40px) translateX(160px);
-        -o-transform: translateY(-40px) translateX(160px);
-      }
-      
-     .five {
-        z-index: -1;
-        -webkit-transform: translateY(-80px) translateX(310px);
-        -moz-transform: translateY(-80px) translateX(310px);
-        -o-transform: translateY(-80px) translateX(310px);
-      }
-    
-  }
-  
-  #songs.rollup{ // add simple animation for albums song transition
-    -webkit-transition: all .3s;        
-    transition: all .3s;    
-    transform:scaleY(0); 
-  }
-  #songs{
-      position: relative;
-      transform:scaleY(1); 
-      width: 650px;
-      margin: 0 auto;
-      border-radius: 10px;
-      box-shadow: 0 0 5px 5px #dddddd;   
-      -webkit-transition: all .3s;
-      transition: all .3s;
-      .song{
-          background-color: #f4f4f4;
-          border-bottom: solid 1px #dddddd;
-          td{
-              padding: 12px 0 12px 15px;
-          }
-          .song-order{
-              width: 32px;
-              div{
-                background-color: #90b9c9;
-                color: #f4f4f4;
-                width: 24px;
-                height: 24px;
-                text-align: center;
-                line-height: 24px;
-              }
 
-          }
-          .glyphicon.fav{ //change icon color for favorite
-              color: #d9d900 !important;
-          }
-          .glyphicon{
-              color: #dddddd;
-              position: relative;
-              font-size: 24px;
-              width: 32px;
-              cursor: pointer;
-              .bubble{ // tooltip bubble set on top of the star and only display hover
-                  position: absolute;
-                  top: -28px;
-                  right: -50px;
-                  padding: 10px;
-                  white-space: nowrap;
-                  border-radius: 5px;
-                background-color: #888888;
-                color: #f4f4f4;
-                display: none;
-                &:before{ //tooltip content
-                    font-family: 'Roboto';
-                    font-size: 10px;
-                    content: "MARK AS FAVORITE";
-                }
-            }            
-              .pointer{ //tooltip half triangle
-                position: absolute;
-                top: 0;
-                left: 16px;
-                width: 0; 
-                height: 0; 
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                border-top: 10px solid #888888;
-                display: none;
-              }
-              &:hover{
-                  .bubble{
-                      display: block;
-                  }
-                  .pointer{
-                      display: block;
-                  }
-              }
-          }
-          .song-name{
-            color: #0085b2; 
-            letter-spacing: 2px; 
-            .name-span{
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: inline-block;
-                max-width: 280px;
-                vertical-align: bottom;
-                line-height: 15px;
-            }
-            .tag{
-                padding: 3px 15px;
-                margin: 0 5px;
-                background-color: #dddddd;
-                color: #444444;
-                font-size: 12px;
-                letter-spacing: 1px; 
-            }
-          }
-          .song-duration{
-            color: #444444;    
-            margin-right: 15px;        
-          }
-          &:hover{
-              background-color: #0085b2;
-              color: #f4f4f4;
-              -webkit-transition: all .3s;
-              transition: all .3s;  
-              .song-name{
-                  color: #f4f4f4;
-              }
-              .tag{
-                  background-color: #90b9c9;
-                  color: #f4f4f4;
-              }
-              .glyphicon{
-                  color: #f4f4f4;
-              }
-              .song-duration{
-                color: #f4f4f4;
-              }
-          }
+    .album-info {
+      font-size: 24px;
+      text-align: center;
+      font-family: roboto;
+      padding: 5px;
+      max-width: 280px;
+    }
+
+    .name {
+      color: #00698c;
+      min-height: 64px;
+      position: relative;
+      letter-spacing: 3px;
+
+      div {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
       }
+    }
+
+    .artist {
+      color: #000000;
+      font-size: 20px;
+      padding-bottom: 20px;
+    }
+
+    .long-name {
+      letter-spacing: 1px;
+    }
   }
-  #mongo-error{
-      display: none;
+  //set individual alum cover photo poistion and transform behavior
+
+  .one {
+    z-index: -1;
+    -webkit-transform: translateY(-80px) translateX(-310px);
+    -moz-transform: translateY(-80px) translateX(-310px);
+    -o-transform: translateY(-80px) translateX(-310px);
+    // -moz-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
+    // -o-transform: rotateY(25deg) translateX(-430px) skewY(-5deg) scale(0.3, 0.5);
   }
-  #mongo-error.error {
-    -webkit-animation: seconds 1.0s forwards;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-delay: 5s;
-    animation: seconds 1.0s forwards;
-    animation-iteration-count: 1;
-    animation-delay: 3s;
-    position: absolute;
-    width: 500px;
-    height: 80px;
-    border: #bbbbbb 2px solid;
-    left: 30%;
-    z-index: 2;
-    color: #666666;
+
+  .two {
+    -webkit-transform: translateY(-40px) translateX(-160px);
+    -moz-transform: translateY(-40px) translateX(-160px);
+    -o-transform: translateY(-40px) translateX(-160px);
+  }
+
+  .three {
+    //all eyes on .three
+    z-index: 1;
+    -webkit-transform: rotateY(0) translateX(0);
+    -moz-transform: rotateY(0) translateX(0);
+    -o-transform: rotateY(0) translateX(0);
+    background-color: #0085b2;
+
+    .artist,
+    .name {
+      color: white;
+    }
+  }
+
+  .four {
+    -webkit-transform: translateY(-40px) translateX(160px);
+    -moz-transform: translateY(-40px) translateX(160px);
+    -o-transform: translateY(-40px) translateX(160px);
+  }
+
+  .five {
+    z-index: -1;
+    -webkit-transform: translateY(-80px) translateX(310px);
+    -moz-transform: translateY(-80px) translateX(310px);
+    -o-transform: translateY(-80px) translateX(310px);
+  }
+}
+
+#songs.rollup {
+  // add simple animation for albums song transition
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  transform: scaleY(0);
+}
+
+#songs {
+  position: relative;
+  transform: scaleY(1);
+  width: 650px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 5px #dddddd;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+
+  .song {
     background-color: #f4f4f4;
-    font-size: 24px;
-    text-align: center;
-    display: block
+    border-bottom: solid 1px #dddddd;
+
+    td {
+      padding: 12px 0 12px 15px;
+    }
+
+    .song-order {
+      width: 32px;
+
+      div {
+        background-color: #90b9c9;
+        color: #f4f4f4;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+      }
+    }
+
+    .glyphicon.fav {
+      //change icon color for favorite
+      color: #d9d900 !important;
+    }
+
+    .glyphicon {
+      color: #dddddd;
+      position: relative;
+      font-size: 24px;
+      width: 32px;
+      cursor: pointer;
+
+      .bubble {
+        // tooltip bubble set on top of the star and only display hover
+        position: absolute;
+        top: -28px;
+        right: -50px;
+        padding: 10px;
+        white-space: nowrap;
+        border-radius: 5px;
+        background-color: #888888;
+        color: #f4f4f4;
+        display: none;
+
+        &:before {
+          //tooltip content
+          font-family: 'Roboto';
+          font-size: 10px;
+          content: "MARK AS FAVORITE";
+        }
+      }
+
+      .pointer {
+        //tooltip half triangle
+        position: absolute;
+        top: 0;
+        left: 16px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #888888;
+        display: none;
+      }
+
+      &:hover {
+        .bubble {
+          display: block;
+        }
+
+        .pointer {
+          display: block;
+        }
+      }
+    }
+
+    .song-name {
+      color: #0085b2;
+      letter-spacing: 2px;
+
+      .name-span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        max-width: 280px;
+        vertical-align: bottom;
+        line-height: 15px;
+      }
+
+      .tag {
+        padding: 3px 15px;
+        margin: 0 5px;
+        background-color: #dddddd;
+        color: #444444;
+        font-size: 12px;
+        letter-spacing: 1px;
+      }
+    }
+
+    .song-duration {
+      color: #444444;
+      margin-right: 15px;
+    }
+
+    &:hover {
+      background-color: #0085b2;
+      color: #f4f4f4;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+
+      .song-name {
+        color: #f4f4f4;
+      }
+
+      .tag {
+        background-color: #90b9c9;
+        color: #f4f4f4;
+      }
+
+      .glyphicon {
+        color: #f4f4f4;
+      }
+
+      .song-duration {
+        color: #f4f4f4;
+      }
+    }
   }
-  @-webkit-keyframes seconds {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
+}
+
+#mongo-error {
+  display: none;
+}
+
+#mongo-error.error {
+  -webkit-animation: seconds 1.0s forwards;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-delay: 5s;
+  animation: seconds 1.0s forwards;
+  animation-iteration-count: 1;
+  animation-delay: 3s;
+  position: absolute;
+  width: 500px;
+  height: 80px;
+  border: #bbbbbb 2px solid;
+  left: 30%;
+  z-index: 2;
+  color: #666666;
+  background-color: #f4f4f4;
+  font-size: 24px;
+  text-align: center;
+  display: block;
+}
+@-webkit-keyframes seconds {
+  0% {
+    opacity: 1;
   }
-  @keyframes seconds {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }  
-  
-  
+
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
