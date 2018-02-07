@@ -86,7 +86,7 @@ app.put('/favList', function(req, res, next) {
 
 // Get albums method
 app.get('/albums', function(req, res) {
-  request('https://stg-resque.hakuapp.com/albums.json', function(error, response, body) {
+  request('https://701msx62o2.execute-api.us-east-1.amazonaws.com/api/album', function(error, response, body) {
     if (!error && response.statusCode == 200) {
       res.send(body);
     }
@@ -96,7 +96,7 @@ app.get('/albums', function(req, res) {
 })
 //Get Songs method
 app.post('/songs', function(req, res) {
-  request('https://stg-resque.hakuapp.com/songs.json?album_id=' + req.body.id, function(error, response, body) {
+  request('https://701msx62o2.execute-api.us-east-1.amazonaws.com/api/songs/' + req.body.id, function(error, response, body) {
     if (!error && response.statusCode == 200) {
       res.send(body);
     }
