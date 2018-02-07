@@ -1,6 +1,11 @@
 # Jukebox
 
-Make a scrolling carousel for music selections
+Make a scrolling carousel for music selections base on this mockup
+
+![alt tag](carousel.jpg)
+====
+
+
 
 ## Features
 
